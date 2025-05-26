@@ -1,11 +1,11 @@
 'use client'
 
-import { useMemo, useRef } from "react";
+import { useState,useMemo, useRef ,useEffect} from "react";
 import AnimationWrapper from "../animation-wrapper";
 import { motion } from 'framer-motion';
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaTwitter } from "react-icons/fa"
 import Image from "next/image";
-import home from "../../../assets/home.png"
+import home from "../../../assets/home.jpg"
 
 const variants = () => ({
   offscreen: { y: 150, opacity: 0 },
@@ -42,11 +42,52 @@ const socialIcons = [
     label: "Instagram"
   }
 ];
+ const images = [
+    home, 
+    'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop',
+     'https://images.unsplash.com/photo-1748279423471-0b923df37c59??w=800&h=600&fit=crop',
+    
 
+  ];
 export default function ClientHomeView({ data }) {
   const setVariants = useMemo(() => variants(), []);
   const containerRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFlipping, setIsFlipping] = useState(false);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsFlipping(true);
+      
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => 
+          prevIndex === images.length - 1 ? 0 : prevIndex + 1
+        );
+        setIsFlipping(false);
+      }, 300); // Half of the flip animation duration
+    }, 2000); // Change image every 4 seconds
 
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  const goToSlide = (index) => {
+    if (index !== currentIndex) {
+      setIsFlipping(true);
+      setTimeout(() => {
+        setCurrentIndex(index);
+        setIsFlipping(false);
+      }, 300);
+    }
+  };
+
+  const goToPrevious = () => {
+    const newIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+    goToSlide(newIndex);
+  };
+
+  const goToNext = () => {
+    const newIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+    goToSlide(newIndex);
+  };
   return (
     <section className="max-w-5xl mx-auto px-4 sm:px-6 py-8 md:py-12" id="home">
          <div className="h-[6vh] w-full bg-transparent flex items-center justify-center">
@@ -102,48 +143,120 @@ export default function ClientHomeView({ data }) {
           </div>
           
           {/* Image */}
-          <motion.div 
-  ref={containerRef} 
-  className="flex justify-center mb-6 sm:mb-0" 
-  initial={{ opacity: 0 }} 
-  animate={{ opacity: 1 }} 
-  transition={{ duration: 0.5 }}
->
-  <motion.div 
-    drag 
-    dragConstraints={containerRef} 
-    className="relative w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full shadow-xl overflow-hidden transition-all duration-300 hover:scale-105"
-    style={{ 
-      background: "linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)",
-      border: "10px solid #22c55e", // Green border
-    }}
-    whileHover={{ 
-      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" 
-    }}
-    whileTap={{ scale: 0.98 }}
-  >
-    {/* Remove this div as we're adding the border directly to the main element */}
-    {/* <div className="absolute w-full h-full top-2 -left-2 rounded-full border-4 border-gray-800 z-0"></div> */}
-    
-    <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-green-500/50 z-10 transition-opacity duration-300 hover:opacity-0"></div>
-    
-    <motion.div 
-      className="absolute inset-0 z-20" 
-      initial={{ scale: 1.2, opacity: 0 }} 
-      animate={{ scale: 1, opacity: 1 }} 
-      transition={{ duration: 0.7, ease: "easeOut" }}
+           <motion.div 
+      ref={containerRef} 
+      className="flex justify-center mb-6 sm:mb-0" 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      transition={{ duration: 0.5 }}
     >
-      <Image 
-        src={home} 
-        alt="home image" 
-        fill 
-        quality={90} 
-        sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, 320px" 
-        className="object-cover absolute -top-1" 
-      />
+      <motion.div 
+        drag 
+        dragConstraints={containerRef} 
+        className="relative w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full shadow-xl overflow-hidden transition-all duration-300 hover:scale-105"
+        style={{ 
+          background: "linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)",
+          border: "10px solid #22c55e",
+          perspective: '1000px'
+        }}
+        whileHover={{ 
+          boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" 
+        }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-green-500/50 z-10 transition-opacity duration-300 hover:opacity-0"></div>
+        
+        {/* Flip container */}
+        <div 
+          className={`absolute inset-0 z-20 transition-transform duration-600 ${
+            isFlipping ? 'rotate-y-180' : ''
+          }`}
+          style={{
+            transformStyle: 'preserve-3d',
+            transform: isFlipping ? 'rotateY(180deg)' : 'rotateY(0deg)'
+          }}
+        >
+          {/* Front face */}
+          <motion.div 
+            className="absolute inset-0 w-full h-full"
+            style={{ backfaceVisibility: 'hidden' }}
+            initial={{ scale: 1.2, opacity: 0 }} 
+            animate={{ scale: 1, opacity: 1 }} 
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
+            <img
+              src={images[currentIndex]}
+              alt={`Slide ${currentIndex + 1}`}
+              className="w-full h-full object-cover absolute -top-1"
+              style={{ 
+                width: '100%', 
+                height: '100%',
+                objectFit: 'cover'
+              }}
+            />
+          </motion.div>
+          
+          {/* Back face */}
+          <div 
+            className="absolute inset-0 w-full h-full"
+            style={{ 
+              backfaceVisibility: 'hidden',
+              transform: 'rotateY(180deg)'
+            }}
+          >
+            <img
+              src={images[currentIndex]}
+              alt={`Slide ${currentIndex + 1}`}
+              className="w-full h-full object-cover absolute -top-1"
+              style={{ 
+                width: '100%', 
+                height: '100%',
+                objectFit: 'cover'
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Navigation arrows */}
+        <button
+          onClick={goToPrevious}
+          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-40 hover:bg-opacity-70 text-white p-2 rounded-full transition-all duration-200 hover:scale-110 z-30"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        
+        <button
+          onClick={goToNext}
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-40 hover:bg-opacity-70 text-white p-2 rounded-full transition-all duration-200 hover:scale-110 z-30"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        {/* Dots indicator */}
+        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-1 z-30">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                index === currentIndex 
+                  ? 'bg-white scale-125 shadow-md' 
+                  : 'bg-white bg-opacity-50 hover:bg-opacity-75'
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Image counter */}
+        <div className="absolute top-3 right-3 bg-black bg-opacity-40 text-white px-2 py-1 rounded-full text-xs z-30">
+          {currentIndex + 1}/{images.length}
+        </div>
+      </motion.div>
     </motion.div>
-  </motion.div>
-</motion.div>
         </motion.div>
       </AnimationWrapper>
     </section>

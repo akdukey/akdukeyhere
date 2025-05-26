@@ -20,6 +20,19 @@ const controls = [
         placeholder: 'College Name',
         type: 'text',
         label: 'College Name'
+    } ,
+    {
+        name: 'domain',
+        placeholder: 'domain',
+        type: 'text',
+        label: 'domain'
+    } 
+    ,
+    {
+        name: 'score',
+        placeholder: 'score',
+        type: 'text',
+        label: 'score'
     } 
 ] 
 
@@ -55,6 +68,8 @@ export default function AdminEducationView({formData,setFormData,handleSaveData,
  <p className="text-lg font-semibold text-gray-700">Degree: {item.degree}</p>
  <p className="text-lg text-gray-700">Year: {item.year}</p>
  <p className="text-lg   text-gray-700">College: {item.college}</p>
+  <p className="text-lg   text-gray-700">Domain: {item.domain}</p>
+   <p className="text-lg   text-gray-700">Score: {item.score}</p>
 
   <div className="flex gap-2">
      <button onClick={() => handleDeleteItem(item._id)} className="bg-red-500 text-white-500 p-2 rounded">

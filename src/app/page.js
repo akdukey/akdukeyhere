@@ -21,6 +21,7 @@ export default async function Home() {
   const experienceSectionData = await extractAllDatas("experience");
   const educationSectionData = await extractAllDatas("education");
   const projectSectionData = await extractAllDatas("project");
+  
  
   return (
     <div>

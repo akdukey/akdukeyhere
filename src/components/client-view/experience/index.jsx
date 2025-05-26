@@ -83,13 +83,17 @@ export default function ClientExperienceAndEducationView({educationData, experie
                                             </TimelineSeparator>
                                             <TimelineContent>
                                                 <div className="border-[2px] p-3 sm:p-4 rounded-[8px] border-green-main mt-[14px] ml-[8px] sm:ml-[16px]">
-                                                    <p className="font-bold text-[#ffffff] text-sm sm:text-base">Year: { educationItem.year }</p> 
-                                                    <p className="text-[#ffffff] font-extrabold mt-1 sm:mt-2 text-sm sm:text-base">
-                                                        College: { educationItem.college } 
+                                                    <p className=" text-[#ffffff] text-sm sm:text-base"><span className="font-normal" >Year:</span> <span className="font-extrabold">{ educationItem.year }</span></p> 
+                                                   <p className="mt-1 sm:mt-2 text-sm sm:text-base">
+  <span className="text-[#ffffff] font-normal">Instituion:</span>{' '}
+  <span className="text-[#ffffff] font-extrabold">{educationItem.college}</span>
+  
+</p>
+                                                    <p className=" text-[#ffffff]  mt-1 sm:mt-2 text-xs sm:text-sm">
+                                                       <span className='font-extrabold'> { educationItem.degree } </span>
                                                     </p>
-                                                    <p className=" text-[#ffffff] font-bold mt-1 sm:mt-2 text-xs sm:text-sm">
-                                                        Degree: { educationItem.degree } 
-                                                    </p>
+                                                    <p><span className='font-normal'>Domain:</span><span className='font-extrabold'>{educationItem.domain}</span></p>
+                                                     <p><span className='font-normal'>Score:</span><span className='font-extrabold'>{educationItem.score}</span></p>
                                                 </div>
                                             </TimelineContent>
                                         </TimelineItem>
