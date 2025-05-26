@@ -8,7 +8,7 @@ import Courses from "@/components/client-view/Courses"
 import Image from "next/image";
 
 async function extractAllDatas(currentSection) {
-  const res = await fetch(`https://arjundubey.vercel.app/api/${currentSection}/get`,{
+  const res = await fetch(`https://akdukeyhere.vercel.app/api/${currentSection}/get`,{
     method: "GET",
     cache: "no-store"
   });
