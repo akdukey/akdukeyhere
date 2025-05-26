@@ -6,7 +6,7 @@ import ClientProjectView from "@/components/client-view/project";
 import Image from "next/image";
 
 async function extractAllDatas(currentSection) {
-  const res = await fetch(`https://akdukeyhere.vercel.app/api/${currentSection}/get`,{
+  const res = await fetch(`https://akdukeyhere.onrender.com/api/${currentSection}/get`,{
     method: "GET",
     cache: "no-store"
   });
