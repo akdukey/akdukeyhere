@@ -8,25 +8,28 @@ import Courses from "@/components/client-view/Courses"
 import Image from "next/image";
 
 async function extractAllDatas(currentSection) {
-  const res = await fetch(`https://akdukeyhere.vercel.app/api/${currentSection}/get`, {
-    method: "GET",
-    cache: "no-store"
-  });
-  const data = await res.json();
-  return data && data.data;
+  try {
+    const res = await fetch(`https://akdukeyhere.vercel.app/api/${currentSection}/get`, {
+      method: "GET",
+      cache: "no-store",
+      signal: AbortSignal.timeout(10000) // 10 second timeout
+    });
+    
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    
+    const data = await res.json();
+    return data && data.data;
+  } catch (error) {
+    console.error(`Error fetching ${currentSection}:`, error);
+    return null; // Return null instead of throwing to prevent complete failure
+  }
 }
 
 export default async function Home() {
-  // Fetch all data in parallel instead of sequentially
-  const [
-    homeSectionData,
-    aboutSectionData,
-    experienceSectionData,
-    educationSectionData,
-    projectSectionData,
-    stats,
-    courses
-  ] = await Promise.all([
+  // Use Promise.allSettled to handle partial failures gracefully
+  const results = await Promise.allSettled([
     extractAllDatas("home"),
     extractAllDatas("about"),
     extractAllDatas("experience"),
@@ -35,6 +38,17 @@ export default async function Home() {
     extractAllDatas("stats"),
     extractAllDatas("Courses")
   ]);
+
+  // Extract data from settled promises
+  const [
+    homeSectionData,
+    aboutSectionData,
+    experienceSectionData,
+    educationSectionData,
+    projectSectionData,
+    stats,
+    courses
+  ] = results.map(result => result.status === 'fulfilled' ? result.value : null);
 
   return (
     <div>
