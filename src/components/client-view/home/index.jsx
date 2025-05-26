@@ -43,9 +43,9 @@ const socialIcons = [
   }
 ];
  const images = [
-    home, 
-    'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop',
-     'https://images.unsplash.com/photo-1748279423471-0b923df37c59??w=800&h=600&fit=crop',
+
+    'https://images.unsplash.com/photo-1449824913935-59a10b8d2000',
+     'https://images.unsplash.com/photo-1748279423471-0b923df37c59',
     
 
   ];
@@ -187,7 +187,7 @@ export default function ClientHomeView({ data }) {
             <img
               src={images[currentIndex]}
               alt={`Slide ${currentIndex + 1}`}
-              className="w-full h-full object-cover absolute -top-1"
+              className="w-full h-full object-cover absolute "
               style={{ 
                 width: '100%', 
                 height: '100%',
@@ -207,7 +207,7 @@ export default function ClientHomeView({ data }) {
             <img
               src={images[currentIndex]}
               alt={`Slide ${currentIndex + 1}`}
-              className="w-full h-full object-cover absolute -top-1"
+              className="w-full h-full object-cover absolute "
               style={{ 
                 width: '100%', 
                 height: '100%',
