@@ -89,11 +89,11 @@ export default function ClientExperienceAndEducationView({educationData, experie
   <span className="text-[#ffffff] font-extrabold">{educationItem.college}</span>
   
 </p>
-                                                    <p className=" text-[#ffffff]  mt-1 sm:mt-2 text-xs sm:text-sm">
+                                                    <p className=" text-[#ffffff]  mt-1 sm:mt-2 text-xs sm:text-sm"><span className='font-normal'>Type of Education:</span>
                                                        <span className='font-extrabold'> { educationItem.degree } </span>
                                                     </p>
-                                                    <p><span className='font-normal'>Domain:</span><span className='font-extrabold'>{educationItem.domain}</span></p>
-                                                     <p><span className='font-normal'>Score:</span><span className='font-extrabold'>{educationItem.score}</span></p>
+                                                    <p className='text-[#ffffff]'><span className='font-normal'>Domain:</span><span className='font-extrabold'> {educationItem.domain}</span></p>
+                                                     <p className=" text-[#ffffff] "><span className='font-normal'>Score:</span><span className='font-extrabold'> {educationItem.score}</span></p>
                                                 </div>
                                             </TimelineContent>
                                         </TimelineItem>
