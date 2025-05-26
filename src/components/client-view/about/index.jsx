@@ -115,7 +115,7 @@ export default function ClientAboutView({ data }) {
                         variants={setVariants} 
                         className="grid gap-2 sm:gap-4 grid-cols-2 sm:grid-cols-3 h-full w-full"
                     >
-                        {data?.skills.split(",").map((skill, index) => (
+                        {(data?.skills || "").split(",").filter(skill => skill.trim()).map((skill, index) => (
                             <motion.div 
                                 key={index}
                                 className="w-full flex justify-center items-center mb-2" 
