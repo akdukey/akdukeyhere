@@ -31,7 +31,14 @@ const controls = [
         placeholder: 'Skills',
         type: 'text',
         label: 'Skills'
+    },
+     {
+        name: 'images',
+        placeholder: 'images',
+        type: 'text',
+        label: 'images'
     }
+
 ] 
 
 export default function AdminAboutView({formData,setFormData,handleSaveData}){

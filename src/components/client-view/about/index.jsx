@@ -52,6 +52,10 @@ export default function ClientAboutView({ data }) {
 
     const headingText = "Why Hire Me For Your Next Project";
 
+    // Process skills and images
+    const skills = (data?.skills || "").split(",").filter(skill => skill.trim());
+    const images = (data?.images || "").split(",").filter(img => img.trim());
+
     return (
         <div className="max-w-screen-xl  mx-auto" id="about">
             <div className="w-full flex">
@@ -115,15 +119,29 @@ export default function ClientAboutView({ data }) {
                         variants={setVariants} 
                         className="grid gap-2 sm:gap-4 grid-cols-2 sm:grid-cols-3 h-full w-full"
                     >
-                        {(data?.skills || "").split(",").filter(skill => skill.trim()).map((skill, index) => (
+                        {skills.map((skill, index) => (
                             <motion.div 
                                 key={index}
-                                className="w-full flex justify-center items-center mb-2" 
+                                className="w-full flex flex-col justify-center items-center mb-2" 
                                 variants={skillItemVariant}
                             >
-                                <button className="whitespace-nowrap text-ellipsis overflow-hidden py-2 sm:py-3 w-full max-w-[160px] px-2 sm:px-6 border-[2px] border-green-main bg-[#fff] text-[#000] font-bold rounded-lg text-sm sm:text-base md:text-xl tracking-wider sm:tracking-widest hover:shadow-green-main transition-all outline-none">
-                                    {skill.trim()}
-                                </button>
+                                <div className="flex flex-col items-center justify-center py-2 sm:py-3 w-full max-w-[160px] px-2 sm:px-6 border-[2px] border-green-main bg-[#fff] text-[#000] font-bold rounded-lg hover:shadow-green-main transition-all outline-none">
+                                    {/* Skill Image */}
+                                    {images[index] && (
+                                        <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mb-2 relative">
+                                            <Image
+                                                src={images[index].trim()}
+                                                alt={`${skill.trim()} icon`}
+                                                fill
+                                                className="object-contain"
+                                            />
+                                        </div>
+                                    )}
+                                    {/* Skill Text */}
+                                    <span className="whitespace-nowrap text-ellipsis overflow-hidden text-sm sm:text-base md:text-xl tracking-wider sm:tracking-widest text-center">
+                                        {skill.trim()}
+                                    </span>
+                                </div>
                             </motion.div>
                         ))}
                     </motion.div>

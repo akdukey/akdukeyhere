@@ -44,7 +44,7 @@ const socialIcons = [
 ];
  const images = [
 
-    'https://images.unsplash.com/photo-1449824913935-59a10b8d2000',
+    'https://images.unsplash.com/photo-1748323002178-55a6174c4a99',
      'https://images.unsplash.com/photo-1748279423471-0b923df37c59',
     
 
