@@ -8,13 +8,13 @@ const controls = [
         name: "movement",
         placeholder: "Enter your name",
         type: "text",
-        lable: "Name"
+        lable: "Action"
     },
     {
         name: "measure",
         placeholder: "Enter your Email",
         type: "text",
-        lable: "Email"
+        lable: "Measure"
     },
     {
         name: "img",
@@ -171,7 +171,8 @@ export default function ClientBlogsView({ data, setAllData }) {
                                 controlItem.name === "process" ? (
                                     <div key={index} className="p-2 w-full">
                                         <div className="relative">
-                                            <label className="text-sm text-[#000]">
+                                           <label className="text-sm text-white">
+
                                                 {controlItem.lable}</label>
                                         
                                             <textarea 
@@ -191,7 +192,7 @@ export default function ClientBlogsView({ data, setAllData }) {
                                 ) : (
                                     <div key={index} className="p-2 w-full">
                                         <div className="relative">
-                                            <label className="text-sm text-[#000]">
+                                            <label className="text-sm text-[#fff]">
                                                 {controlItem.lable}</label>
                                         
                                             <input 
