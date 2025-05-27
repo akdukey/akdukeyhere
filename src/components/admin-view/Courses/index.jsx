@@ -59,7 +59,7 @@ const initialFormData = {
 }
 
 export default function AdminCoursesView({ data, setAllData }) {
-    const collectionName = "Courses"; // Ensure consistent capitalization
+    const collectionName = "courses"; // Ensure consistent capitalization
     const [formData, setFormData] = useState(initialFormData);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [localData, setLocalData] = useState([]);
