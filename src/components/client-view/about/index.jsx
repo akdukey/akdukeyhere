@@ -58,6 +58,7 @@ export default function ClientAboutView({ data }) {
 
     return (
         <div className="max-w-screen-xl  mx-auto" id="about">
+            
             <div className="w-full flex">
                 <AnimationWrapper className="rounded-lg w-full grid-flow-row grid grid-cols-1 sm:grid-cols-3  divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-green-main bg-ehite-500 z-10">
                     {aboutDataInfo.map((infoItem, index) => (
@@ -87,8 +88,20 @@ export default function ClientAboutView({ data }) {
                         </motion.div>
                     ))}
                 </AnimationWrapper>
+                
             </div>
-
+ <AnimationWrapper className="flex w-full">
+                    <motion.div variants={setVariants} className="h-full w-full p-2 sm:p-4">
+                        <Image
+                            src={about}
+                            alt="about image"
+                            layout="responsive"
+                            quality={100}
+                            height={414}
+                            width={508} 
+                        />  
+                    </motion.div> 
+                </AnimationWrapper>
             <AnimationWrapper className={"pt-6"}>
                 <div className="flex flex-col justify-center items-center">
                     <h1 className="leading-tight sm:leading-[50px] md:leading-[70px] mb-3 sm:mb-4 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-medium text-center">
@@ -101,18 +114,7 @@ export default function ClientAboutView({ data }) {
             </AnimationWrapper>
 
             <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
-                <AnimationWrapper className="flex w-full">
-                    <motion.div variants={setVariants} className="h-full w-full p-2 sm:p-4">
-                        <Image
-                            src={about}
-                            alt="about image"
-                            layout="responsive"
-                            quality={100}
-                            height={414}
-                            width={508} 
-                        />  
-                    </motion.div> 
-                </AnimationWrapper>
+               
 
                 <AnimationWrapper className={"flex items-center w-full p-2 sm:p-4"}>
                     <motion.div 
