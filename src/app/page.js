@@ -48,7 +48,7 @@ export default async function Home() {
     extractAllDatas("education"),
     extractAllDatas("project"),
     extractAllDatas("stats"),
-    extractAllDatas("courses")
+    extractAllDatas("Courses")
   ]);
 
   // Extract successful results, use null for failed ones
