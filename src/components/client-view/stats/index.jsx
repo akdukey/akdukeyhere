@@ -4,8 +4,8 @@ export default function AdminContactView({ data }){
     return (
         <div className="flex flex-col gap-5" id="stats">
             <div className="flex items-center justify-center  bg-black bg-opacity-50 text-white px-4">
-      <div className="text-center">
-        <h1 className="text-[#fff] text-4xl md:text-5xl font-bold mb-4">Stats</h1>
+      <div className="text-center ">
+        <h1 className="text-[#fff] text-4xl md:text-5xl font-bold mb-4 pt-5">Stats</h1>
         <p className="text-[#fff] text-base md:text-lg">these are arjun's current limits in the respective actions done in one go, consecutively</p>
       </div>
     </div>
