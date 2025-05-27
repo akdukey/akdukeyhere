@@ -113,7 +113,7 @@ export default function ClientHomeView({ data }) {
             
             {/* Social Icons */}
             <div className="flex flex-wrap gap-3 sm:gap-4">
-            <p className="text-gray-700 text-sm sm:text-base font-medium">Follow me on social media to stay connected!</p>
+            <p className="text-gray-500 text-sm sm:text-base font-medium">Follow me on social media to stay connected!</p>
               {socialIcons.map((item) => (
                 <a
                   key={item.id}

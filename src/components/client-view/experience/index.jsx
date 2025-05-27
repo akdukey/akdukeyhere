@@ -44,9 +44,14 @@ export default function ClientExperienceAndEducationView({educationData, experie
                                                     <p className="font-extrabold text-[#ffffff] mt-1 sm:mt-2 text-sm sm:text-base">
                                                         { experienceItem.position } 
                                                     </p>
-                                                    <p className="font-bold text-[#ffffff] mt-1 sm:mt-2 text-xs sm:text-sm">
-                                                        { experienceItem.jobprofile } 
-                                                    </p>
+                                                   <div className="font-bold text-[#ffffff] mt-1 sm:mt-2 text-xs sm:text-sm">
+    {experienceItem.jobprofile?.split(',').map((item, index) => (
+        <div key={index} className="flex items-start gap-2 mb-1 last:mb-0">
+            <span className="text-[#ffffff] opacity-70 mt-0.5 text-[8px] sm:text-[10px]">●</span>
+            <span className="flex-1 leading-relaxed">{item.trim()}</span>
+        </div>
+    ))}
+</div>
                                                 </div>
                                             </TimelineContent>
                                         </TimelineItem>
