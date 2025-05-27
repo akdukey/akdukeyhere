@@ -127,7 +127,7 @@ export default function ClientAboutView({ data }) {
                                 className="w-full flex flex-col justify-center items-center mb-2" 
                                 variants={skillItemVariant}
                             >
-                                <div className="flex flex-col items-center justify-center py-2 sm:py-3 w-full max-w-[160px] px-2 sm:px-6 border-[2px] border-green-main bg-[#fff] text-[#000] font-bold rounded-lg hover:shadow-green-main transition-all outline-none">
+                                <div className="flex flex-col items-center justify-center py-2 sm:py-3 w-full max-w-[160px] px-2 sm:px-6 border-[2px] border-green-main bg-transparent text-[#008000] font-bold rounded-lg hover:shadow-green-main transition-all outline-none">
                                     {/* Skill Image */}
                                     {images[index] && (
                                         <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mb-2 relative">
