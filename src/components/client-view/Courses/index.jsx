@@ -118,8 +118,8 @@ export default function AdminBlogsView({ data }) {
                             />
                         </div>
                     )}
-                    <p className="font-bold">{item.title}</p>
-                    <p className="text-gray-600">{item.category}</p>
+                    <p className="font-bold text-[#fff]">{item.title}</p>
+                    <p className="text-[#fff]">{item.category}</p>
                     <p className="mt-2">
   {item.concept.length > 150 
     ? `${item.concept.substring(0, 150)}...` 
