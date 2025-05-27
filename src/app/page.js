@@ -68,8 +68,9 @@ export default async function Home() {
       />
       <ClientProjectView data={getData(projectSectionData)} />
       <ClientContactView/>
-      <Stats data={getData(stats)}/>
+     
       <Blogs data = {getData(blog)}/>
+       <Stats data={getData(stats)}/>
     </div>
   );
 }
