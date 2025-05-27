@@ -6,6 +6,7 @@ import ClientProjectView from "@/components/client-view/project";
 import Stats from "@/components/client-view/stats";
 import Blogs from "@/components/client-view/Courses";
 
+
 async function extractAllDatas(currentSection) {
   try {
     // Use environment variable or relative URL
