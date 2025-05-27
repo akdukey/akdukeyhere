@@ -35,13 +35,14 @@ export default function AdminBlogsView({ data }) {
     };
     
     return (
-        <div className="flex flex-col gap-5" id="courses">
+        <div className="flex flex-col gap-5 " id="courses">
+                 <p className='text-[#fff]'> click on the pallete to view in detail</p>
             {/* Filters Section */}
             <div className="mb-4 space-y-3">
                 {/* Search Bar */}
                 <input
                     type="text"
-                    placeholder="Search blogs by name..."
+                    placeholder="search..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -54,7 +55,7 @@ export default function AdminBlogsView({ data }) {
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                     >
                         <span className="truncate">
-                            {selectedEmail ? selectedEmail : 'Filter by email category...'}
+                            {selectedEmail ? selectedEmail : 'filter...'}
                         </span>
                         <svg 
                             className={`w-5 h-5 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
@@ -98,8 +99,9 @@ export default function AdminBlogsView({ data }) {
                         Clear all filters
                     </button>
                 )}
+                
             </div>
-            
+       
             {/* Blog List */}
             {filteredBlogs?.map((item) => (
                 <a

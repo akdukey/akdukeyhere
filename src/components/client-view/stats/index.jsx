@@ -3,6 +3,7 @@
 export default function AdminContactView({ data }){
     return (
         <div className="flex flex-col gap-5" id="stats">
+                       <p className='text-[#fff]'> click on the pallete to view in detail</p>
             {data && data.length ?
             data.map((item) => (
               
