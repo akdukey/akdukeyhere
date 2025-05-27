@@ -22,7 +22,7 @@ const initialAboutFormData = {
     yearofexerience: "",
     noofclients: "",
     skills: "",
-    images:""
+
 };
 const initialExperienceFormData = {
     position: "",
